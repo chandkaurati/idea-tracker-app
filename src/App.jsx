@@ -1,31 +1,43 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
-import { UserProvider } from './context/UserContext'
 import Home from './pages/Home'
 import { useUser } from './hooks/useUser'
 import Login from './componants/login'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Auth from './pages/Auth'
 import Register from './componants/register'
-
+import Loading from './componants/Loading'
 
 
 
 function App() {
-  const [isloggedin, setIsloggedin] = useState(false)
-  const {init} = useUser()
+  const {user, init} = useUser()
+  const [current, setCurrent] = useState(null)
+  const [loading, setLoading] = useState(true)
   useEffect(()=>{
-   async function getUser(){
-     let responce =  await init()
-     if(responce) setIsloggedin(true)
+   async function getCurrent(){
+    let currentUser = await init()
+    if(currentUser){
+       setCurrent(currentUser)
+    }else{
+       setCurrent(null)
+    }
+
+    setLoading(false)
    }
+   getCurrent()
   },[])
-  return (
+
+
+  if(loading){
+  return <Loading/>
+  }
+
+   return (
     <>
      <BrowserRouter>
       <Routes>
-      <Route path='/' element={isloggedin?<Home/> : <Auth/>}/>
-      <Route path='/auth' element= {<Auth/>}/> 
+      <Route path='/' element={current?<Home/>:<Register setlogginUser={setCurrent}/>}/>
+      <Route path='/login' element={<Login/>}/>
       </Routes>
      </BrowserRouter>
     </>
