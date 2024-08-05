@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useUser } from "../hooks/useUser";
 import { Link, useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ function Register() {
   if (loading) {
     return (
       <div>
-        <h1 className="text-pink-600 text-lg font-semibold">Loading .....</h1>
+       <Loading/>
       </div>
     );
   }

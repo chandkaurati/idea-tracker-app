@@ -13,6 +13,7 @@ function App() {
   const {user, init} = useUser()
   const [current, setCurrent] = useState(null)
   const [loading, setLoading] = useState(true)
+  
   useEffect(()=>{
    async function getCurrent(){
     let currentUser = await init()
@@ -36,7 +37,7 @@ function App() {
     <>
      <BrowserRouter>
       <Routes>
-      <Route path='/' element={current?<Home/>:<Register setlogginUser={setCurrent}/>}/>
+      <Route path='/' element={current&&user?<Home/>:<Register setlogginUser={setCurrent}/>}/>
       <Route path='/login' element={<Login/>}/>
       </Routes>
      </BrowserRouter>
