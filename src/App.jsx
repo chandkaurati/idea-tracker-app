@@ -6,6 +6,7 @@ import Login from './componants/login'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Register from './componants/register'
 import Loading from './componants/Loading'
+import Navbar from './componants/navbar'
 
 
 
@@ -36,6 +37,7 @@ function App() {
    return (
     <>
      <BrowserRouter>
+      <Navbar/>
       <Routes>
       <Route path='/' element={current&&user?<Home/>:<Register setlogginUser={setCurrent}/>}/>
       <Route path='/login' element={<Login/>}/>
