@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import './App.css'
 import Home from './pages/Home'
 import { useUser } from './hooks/useUser'
 import Login from './componants/login'
@@ -35,7 +34,7 @@ function App() {
   }
 
    return (
-    <>
+    <div className=''>
      <BrowserRouter>
       <Navbar/>
       <Routes>
@@ -43,7 +42,7 @@ function App() {
       <Route path='/login' element={<Login/>}/>
       </Routes>
      </BrowserRouter>
-    </>
+     </div>
   )
 
 }

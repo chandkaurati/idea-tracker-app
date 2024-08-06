@@ -35,7 +35,7 @@ function Register() {
     );
   }
   return (
-    <div className="w-full md:flex items-center justify-center">
+    <div className="w-full flex items-center justify-center text-center my-7">
       <div className="border p-1 shadow-2xl md:w-[600px]">
         <span>
           <h2 className="text-2xl font-semibold">Register</h2>
@@ -76,7 +76,7 @@ function Register() {
 
           <button
             onClick={createUser}
-            className="bg-[#FD356E] 
+            className="bg-[hsl(343,98%,60%)] 
           hover:bg-[#ec114f] p-2 rounded-md text-white "
           >
             submit
