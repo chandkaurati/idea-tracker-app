@@ -7,4 +7,4 @@ client
 .setProject("66a358db0014ce9ec7fa")
 
 export const account = new Account(client)
-export const dtabases = new Databases(client)
+export const databases = new Databases(client)
