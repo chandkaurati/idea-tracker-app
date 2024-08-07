@@ -1,24 +1,26 @@
 import React, { useState } from 'react'
-import { useUser } from '../hooks/useUser'
+import { useIdeas, useUser } from '../hooks/useUser'
+import AddIdeaInput from '../componants/Input'
 
 function Home() {
-    const {counter, setCounter, user, logout} = useUser()   
-    const updateCounter = ()=> {
-    setCounter("this is updaated counter")
-    }
-
+    const [title, setTitle] = useState("")
+    const [content, setContext] = useState("")
+    const {user, logout} = useUser() 
+    const {idas, add, remove} = useIdeas()  
     async function logOutUser(){
          await logout()
     }
 
- 
+
   return (
-    <div>
-      <h1>{user.name}</h1>
-       this is home page {counter}
-       {/*<h1>Welcome {user.name}</h1> */}
-       <button onClick={updateCounter}>update</button>
-       <button onClick={logOutUser}>logout</button>
+    <div className='w-full flex justify-center p-5'>
+      {user?(
+        <div className='w-full md:w-1/2'>
+          <AddIdeaInput/>
+        </div>
+      ):(
+        <div>plese login to tner the idea</div>
+      )}
     </div>
   )
 }

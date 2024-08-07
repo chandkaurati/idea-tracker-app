@@ -38,7 +38,7 @@ function App() {
      <BrowserRouter>
       <Navbar/>
       <Routes>
-      <Route path='/' element={current&&user?<Home/>:<Register setlogginUser={setCurrent}/>}/>
+      <Route path='/' element={user?<Home/>:<Register setlogginUser={setCurrent}/>}/>
       <Route path='/login' element={<Login/>}/>
       </Routes>
      </BrowserRouter>

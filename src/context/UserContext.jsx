@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { ID } from "appwrite";
 import { account } from "../appwrite/appwrite";
 
@@ -53,10 +53,13 @@ export function UserProvider({ children }) {
     }
   }
 
+  useEffect(()=>{
+     init()
+  },[])
+
   return (
     <UserContext.Provider
-      value={{ counter, user, login, logout, register, init, setCounter }}
-    >
+      value={{ counter, user, login, logout, register, init, setCounter }} >
       {children}
     </UserContext.Provider>
   );

@@ -1,16 +1,12 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { databases } from "../appwrite/appwrite";
 import { ID, Query } from "appwrite";
 
 export const IDEAS_DATABASE_ID = "66b1bf8d001a3115ed42";
 export const IDEAS_COLLECTION_ID = "66b1bf99002ec86971f2";
 
-const IdeasContext = createContext();
+export const IdeasContext = createContext();
 
-
-export const useIdeas = ()=>{
-    return useContext(IdeasContext)
-}
 export function IdeasProvider({children}) {
   const [ideas, setIdeas] = useState([]);
 
@@ -57,7 +53,6 @@ export function IdeasProvider({children}) {
   useEffect(()=>{
     init();
   },[])
-
 
   return (
     <IdeasContext.Provider value={{current:ideas, add, remove,}}>
