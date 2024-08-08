@@ -18,7 +18,7 @@ export function IdeasProvider({children}) {
         ID.unique(),
         idea
       );
-      setIdeas((ideas) => [responce, ...ideas].slice(0, 10));
+      // setIdeas((ideas) => [responce, ...ideas].slice(0, 10));
     } catch (error) {
       console.log(`ERROR IDEA NOT CREATED ${error}`);
     }
@@ -31,7 +31,7 @@ export function IdeasProvider({children}) {
         IDEAS_COLLECTION_ID,
         id
       );
-      setIdeas((ideas) => ideas.filter((idea) => idea.id !== id));
+      setIdeas((ideas) => ideas.filter((idea) => idea.$id !== id));
       console.log("idea deleted successfully");
     } catch (error) {
       console.log(`ERROR IDEA NOT DELETED ${error}`);
@@ -45,11 +45,13 @@ export function IdeasProvider({children}) {
         IDEAS_COLLECTION_ID,
         [Query.orderDesc("$createdAt"), Query.limit(10)]
       );
+      
+      setIdeas(responce.documents)
+      console.log(responce.documents)
     } catch (error) {
-        console.log("ERROR WHITE GETTING LISTS"+ error)
+       console.log("ERROR WHITE GETTING LISTS"+ error)
     }
   }
-
   useEffect(()=>{
     init();
   },[])
