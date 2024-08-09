@@ -53,7 +53,7 @@ export function IdeasProvider({children}) {
     }
   }
   useEffect(()=>{
-    init();
+    // init();
   },[])
 
   return (

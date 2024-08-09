@@ -34,7 +34,7 @@ function App() {
   }
 
    return (
-    <div className='w-full'>
+    <div className='w-full border border-red-800'>
      <BrowserRouter>
       <Navbar/>
       <Routes>
