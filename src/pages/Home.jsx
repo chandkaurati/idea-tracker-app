@@ -8,16 +8,15 @@ import {
 } from "../context/ideasContext";
 import { databases } from "../appwrite/appwrite";
 import Idea from "../componants/Idea";
+import Loading from "../componants/Loading";
 
 function Home() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { user, logout } = useUser();
-  const { add, remove } = useIdeas();
+  const { add } = useIdeas();
   const [ideas, setIdeas] = useState([]);
-  async function logOutUser() {
-    await logout();
-  }
+  const [loader, setLoader] = useState(true)
 
   async function getIdeas() {
     try {
@@ -29,13 +28,20 @@ function Home() {
 
       setIdeas(responce.documents);
       console.log(responce);
+      setLoader(false)
     } catch (error) {
       console.log("cannot get ideas");
+      setLoader(false)
     }
   }
   useEffect(() => {
     getIdeas();
   }, []);
+
+
+  if(loader){
+     return <Loading/>
+  }
 
   const  HandleSubmit =  async (e) => {
     try {
@@ -68,7 +74,7 @@ function Home() {
         )}
       </section>
 
-      <section className="w-full md:w-1/2 flex flex-col gap-5 shadow-lg border p-7 rounded-md">
+      <section className="w-full md:w-1/2 flex flex-col gap-5 shadow-lg  p-7 rounded-md">
         <strong>latest Ideas</strong>
         {ideas?.map((i)=>{
           return (

@@ -10,7 +10,7 @@ function Navbar(props){
 
     return (
        <nav className="w-full h-[100px] shadow-lg flex justify-between items-center static p-4">
-        <span><Link><p className="font-bold text-lg text-[#ec114f]">My Idea tracker</p></Link></span>
+        <span><Link to={"/"}><p className="font-bold text-lg text-[#ec114f]">My Idea tracker</p></Link></span>
         <div>
           {user?(
            <span className="flex gap-3 items-center">

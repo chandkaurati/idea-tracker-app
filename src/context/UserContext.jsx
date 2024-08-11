@@ -14,13 +14,10 @@ export function UserProvider({ children }) {
         email,
         password
       );
-      if (responce) {
-        setUser(responce);
-        return responce
-      }
+      init()
     } catch (error) {
-      console.log("ERROR: user login failed ");
-      return error;
+      return `login Failed ${error}`
+       
     }
   }
 
@@ -32,6 +29,7 @@ export function UserProvider({ children }) {
   async function register(email, password, name) {
     try {
       let user = await account.create(ID.unique(), email, password, name);
+      // setUser(user)
       login(email, password);
       return user;
     } catch (error) {
@@ -45,9 +43,7 @@ export function UserProvider({ children }) {
       // to get the current logged in user
       const loggedIn = await account.get();
       setUser(loggedIn);
-      return loggedIn;
     } catch (error) {
-      // console.log(`"ERROR FAILED TO GET USER" ${error}`)
       setUser(null);
       return null;
     }
