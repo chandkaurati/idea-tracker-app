@@ -1,41 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useIdeas, useUser } from "../hooks/useUser";
+import {useUser } from "../hooks/useUser";
 import AddIdeaInput from "../componants/Input";
-import { Query } from "appwrite";
-import {
-  IDEAS_COLLECTION_ID,
-  IDEAS_DATABASE_ID,
-} from "../context/ideasContext";
-import { databases } from "../appwrite/appwrite";
-import Idea from "../componants/Idea";
+
 import Loading from "../componants/Loading";
 
 function Home() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { user, logout } = useUser();
-  const { add } = useIdeas();
-  const [ideas, setIdeas] = useState([]);
+
   const [loader, setLoader] = useState(true)
 
-  async function getIdeas() {
-    try {
-      const responce = await databases.listDocuments(
-        IDEAS_DATABASE_ID,
-        IDEAS_COLLECTION_ID,
-        [Query.orderDesc("$createdAt"), Query.limit(10)]
-      );
-
-      setIdeas(responce.documents);
-      console.log(responce);
-      setLoader(false)
-    } catch (error) {
-      console.log("cannot get ideas");
-      setLoader(false)
-    }
-  }
   useEffect(() => {
-    getIdeas();
+    setTimeout(() => {
+       setLoader(false)
+    }, 2000);
   }, []);
 
 
@@ -74,14 +53,15 @@ function Home() {
         )}
       </section>
 
-      <section className="w-full md:w-1/2 flex flex-col gap-5 shadow-lg  p-7 rounded-md">
+      {/* <section className="w-full md:w-1/2 flex flex-col gap-5 shadow-lg  p-7 rounded-md">
         <strong>latest Ideas</strong>
         {ideas?.map((i)=>{
           return (
             <Idea key={i.$id} title={i.title} content={i.description}/>
           )
         })}
-      </section>
+      </section> */}
+      <h1>welcome home</h1>
     </div>
   );
 }

@@ -6,8 +6,6 @@ export const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [counter, setCounter] = useState("#%Q#");
-
   async function login(email, password) {
     try {
       const responce = await account.createEmailPasswordSession(
@@ -55,7 +53,7 @@ export function UserProvider({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ counter, user, login, logout, register, init, setCounter }} >
+      value={{user, login, logout, register, init }} >
       {children}
     </UserContext.Provider>
   );
