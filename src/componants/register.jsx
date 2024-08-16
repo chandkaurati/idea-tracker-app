@@ -14,8 +14,8 @@ function Register() {
   // createUser()
 
   async function createUser() {
-    setLoading(true);
     try {
+      setLoading(true);
       let user = await register(email, password, name);
        if(user){
          setLoading(false)
@@ -25,14 +25,12 @@ function Register() {
       console.log(`Error from register ${error}`);
       setLoading(false);
       setError("error");
+    }finally{
+       setLoading(false)
     }
   }
   if (loading) {
-    return (
-      <div>
-       <Loading/>
-      </div>
-    );
+    return <Loading/>
   }
   return (
     <div className="w-full flex items-center justify-center text-center my-7">

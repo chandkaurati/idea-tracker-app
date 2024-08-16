@@ -48,7 +48,7 @@ export function UserProvider({ children }) {
   }
 
   useEffect(()=>{
-     init()
+  init()
   },[])
 
   return (
