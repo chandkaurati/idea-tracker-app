@@ -8,30 +8,30 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login } = useUser();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function loginUser() {
-     try {
-      setLoading(true)
-      const res =  await login(email,password)
-      if(typeof res === "string"){
-        setError("plese enter a valid details")
-      }else{
-        navigate("/")
+    try {
+      setLoading(true);
+      const res = await login(email, password);
+      if (typeof res === "string") {
+        setError("plese enter a valid details");
+      } else {
+        navigate("/");
       }
-     } catch (error) {
-      console.log(error)
-     }finally{
-      setLoading(false)
-     }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   }
 
-  if(loading){
-     return <Loading/>
+  if (loading) {
+    return <Loading />;
   }
   return (
-    <div className="flex flex-col  justify-center rounded-md p-5 gap-4 text-center md:w-1/2  shadow-lg">
+    <div className="flex flex-col  justify-center  rounded-md p-5 gap-4 text-center md:w-1/2  shadow-lg">
       <span>
         <h2 className="text-lg">Login</h2>
       </span>

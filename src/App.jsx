@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Register from './componants/register'
 import Loading from './componants/Loading'
 import Navbar from './componants/navbar'
+import Myideas from './pages/myIdeas'
 
 
 
@@ -15,13 +16,14 @@ function App() {
   const [loading, setLoading] = useState(true)
 
    return (
-    <div className='w-full'>
+    <div className=''>
      <BrowserRouter>
       <Navbar/>
       <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/register' element={<Register/>}/>   
       <Route path='/login' element={<Login/>}/>
+      <Route path='/myideas' element={<Myideas/>}/>
       </Routes>
      </BrowserRouter>
      </div>

@@ -3,8 +3,7 @@ import { useUser } from "../hooks/useUser";
 import AddIdeaInput from "../componants/Input";
 import useIdeas from "../hooks/useIdeas";
 import Loading from "../componants/Loading";
-import Idea from "../componants/Idea";
-
+import Idea from "../componants/Idea"
 function Home() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -16,6 +15,10 @@ function Home() {
     setTimeout(() => {
       setLoader(false);
     }, 2000);
+    
+    console.log(ideas)
+
+    console.log(user)
   }, [ideas]);
 
   const HandleSubmit = async (e) => {
